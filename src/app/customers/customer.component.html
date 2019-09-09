@@ -5,8 +5,8 @@
 
   <div class="card-body">
     <form novalidate
-          (ngSubmit)="save(signupForm)"
-          #signupForm="ngForm">
+          (ngSubmit)="save()"
+          [formGroup]="customerForm">
 
       <div class="form-group row mb-2">
         <label class="col-md-2 col-form-label"
@@ -18,9 +18,6 @@
                  placeholder="First Name (required)"
                  required
                  minlength="3"
-                 [(ngModel)]=customer.firstName
-                 name="firstName"
-                 #firstNameVar="ngModel"
                  [ngClass]="{'is-invalid': (firstNameVar.touched || firstNameVar.dirty) && !firstNameVar.valid }" />
           <span class="invalid-feedback">
             <span *ngIf="firstNameVar.errors?.required">
@@ -206,8 +203,8 @@
           <button class="btn btn-primary mr-3"
                   type="submit"
                   style="width:80px"
-                  [title]="signupForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
-                  [disabled]="!signupForm.valid">
+                  [title]="customerForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                  [disabled]="!customerForm.valid">
             Save
           </button>
         </div>
@@ -215,7 +212,7 @@
     </form>
   </div>
 </div>
-<br>Dirty: {{ signupForm.dirty }}
-<br>Touched: {{ signupForm.touched }}
-<br>Valid: {{ signupForm.valid }}
-<br>Value: {{ signupForm.value | json }}
+<br>Dirty: {{ customerForm.dirty }}
+<br>Touched: {{ customerForm.touched }}
+<br>Valid: {{ customerForm.valid }}
+<br>Value: {{ customerForm.value | json }}
